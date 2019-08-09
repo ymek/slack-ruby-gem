@@ -13,7 +13,8 @@ module Slack
       :proxy,
       :ca_path,
       :ca_file,
-      :middlewares
+      :middlewares,
+      :timeout,
     ].freeze
 
     # The adapter that will be used to connect if none is set
@@ -40,6 +41,9 @@ module Slack
     DEFAULT_CA_FILE = "#{DEFAULT_CA_PATH}/ca-certificates.crt"
 
     DEFAULT_MIDDLEWARES = []
+
+    # Default timeout in seconds
+    DEFAULT_TIMEOUT = 30
 
     # @private
     attr_accessor *VALID_OPTIONS_KEYS
@@ -71,6 +75,7 @@ module Slack
       self.ca_path     = DEFAULT_CA_PATH
       self.ca_file     = DEFAULT_CA_FILE
       self.middlewares = DEFAULT_MIDDLEWARES
+      self.timeout     = DEFAULT_TIMEOUT
     end
   end
 end

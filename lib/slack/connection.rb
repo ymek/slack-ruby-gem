@@ -12,9 +12,12 @@ module Slack
         :proxy => proxy,
         :url => endpoint,
         :ssl => { :ca_path => ca_path, :ca_file => ca_file },
+        :request => { :timeout => timeout },
       }
 
       Faraday::Connection.new(options) do |connection|
+        # connnection.options[:timeout] = timeout
+
         Array(middlewares).each do |middleware|
           connection.use middleware
         end
